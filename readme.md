@@ -6,6 +6,9 @@ jQuery Panelize is a plugin largely to assist in navigating comics, although it 
 Refer to the [jQuery Panelize website](http://russellbits.com/jquery.panelize) for 
 examples.
 
+#### Temporary dependency
+For the moment, Panelize is dependent on the Transit library for animations. A working version is provided in this repo until Panelize can perform animations on its own. (see [http://ricostacruz.com/jquery.transit/](http://ricostacruz.com/jquery.transit/) for more information)
+
 Usage
 -----
 
@@ -13,6 +16,7 @@ Include the panelize script after jQuery. Requires jQuery 1.4+.
 
 ``` html
 <script src='jquery.js'></script>
+<script src='jquery.transit.js'></script>
 <script src='jquery.panelize.js'></script>
 ```
 Intially setting up the panelize area requires a call to the plugin. Wrap your image with a div tag with an id, such as
