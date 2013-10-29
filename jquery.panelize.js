@@ -8,7 +8,7 @@ jQuery.fn.panelize = function( options ) {
 	var defaults = {
 		container: this, // this should be used as opposed to explicit jquery references
 		fullPageStart: true,
-		showNextBtnID : '#showNextPanel',
+		showNextBtnID : '#nextPanelBtn',
 		resetBtnID: '#resetBtn'
 	};
 
