@@ -1,6 +1,16 @@
-/**
-* TDODs
-* + Previous button
+/*!
+ * jQuery Panelize - image navigation with image maps
+ * (c) 2013 R.E. Warner <rewarner@russellbits.com>
+ * MIT Licensed.
+ *
+ * http://russellbits.github.io/panelize
+ * http://github.com/russellbits/panelize
+
+ * TDODs
+ * + Previous button
+ * + Create transitions without transit.js dependency
+ * + Create alternate area for link w/out pan/zoom
+ * + 
 */
 
 jQuery.fn.panelize = function( options ) {
@@ -9,6 +19,7 @@ jQuery.fn.panelize = function( options ) {
 		container: this, // this should be used as opposed to explicit jquery references
 		fullPageStart: true,
 		showNextBtnID : '#nextPanelBtn',
+		showPrevBtnID : '#prevPanelBtn',
 		resetBtnID: '#resetBtn'
 	};
 
