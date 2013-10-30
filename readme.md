@@ -41,15 +41,19 @@ Simply use the HTML id `showNextPanel` on any anchor element to create a link th
 
 Settings
 --------
+Default settings in panelize can be changed when the plugin is first called. The code below illustrates how the settings can be changed, but using the default values.
+
 ```javascript
 $('panelViewer').panelize({
     fullPageStart: false,
     showNextBtnID : '#nextPanelBtn',
+	showPrevBtnID : '#prevPanelBtn',
 });
 ```
+
 + `fullPageStart` is a boolean value. If set to `false` (the default) then panelize will zoom and pan to the first panel. A value of `true` will scale the entire image to fit inside the defined view space.
 
-+ `showNextBtnID` allows you to manually set what HTML item is the button that progresses panelize. The default ID is _#nextPanelBtn_. If you set this to 'showNextPanel', you will need to create a matching anchor element (or button) with that ID, e.g. `<div><a href="#" id="showNextPanel">Next</a></div>`.
++ `showNextBtnID` allows you to manually set what HTML item is the button that progresses panelize. The default ID is _#nextPanelBtn_. If you set this to 'showNextPanel', you will need to create a matching anchor element (or button) with that ID, e.g. `<div><a href="#" id="showNextPanel">Next</a></div>`. The `showPrevBtnID` operates in the same fashion, but is used for setting up a previous button that will reverse the panelize zoom/pan.
 
 Acknowledgements
 ----------------
