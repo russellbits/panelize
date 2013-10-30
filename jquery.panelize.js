@@ -10,7 +10,7 @@
  * + Previous button
  * + Create transitions without transit.js dependency
  * + Create alternate area for link w/out pan/zoom
- * + 
+ * + Needs a pre-loading function for large images
 */
 
 jQuery.fn.panelize = function( options ) {
@@ -67,7 +67,7 @@ jQuery.fn.panelize = function( options ) {
 	if(settings.fullPageStart) {
 		var xOffset = 0;
 		var yOffset = 0;
-		comic = $('#comicOverlay').find('#comic');
+		comic = $(settings.panelViewerID).find('img');
 		if(comic.width() > comic.height()) {
 			scaleFactor = panels.viewerWidth/comic.width();
 			yOffset = Math.floor(((panels.viewerHeight-(comic.height()*scaleFactor))/2));
