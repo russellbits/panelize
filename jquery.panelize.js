@@ -1,5 +1,7 @@
 /*!
- * jQuery Panelize - image navigation with image maps
+ * jQuery Panelize - v0.7b - 2013-10-29
+ * Image navigation with image maps
+ * 
  * (c) 2013 R.E. Warner <rewarner@russellbits.com>
  * MIT Licensed.
  *
@@ -7,6 +9,7 @@
  * http://github.com/russellbits/panelize
 
  * TDODs
+ * + Work out index bug
  * + Previous button
  * + Create transitions without transit.js dependency
  * + Create alternate area for link w/out pan/zoom
