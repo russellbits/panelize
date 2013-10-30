@@ -18,6 +18,7 @@ jQuery.fn.panelize = function( options ) {
 	var defaults = {
 		container: this, // this should be used as opposed to explicit jquery references
 		fullPageStart: true,
+		panelViewerID : '#panelViewer',
 		showNextBtnID : '#nextPanelBtn',
 		showPrevBtnID : '#prevPanelBtn',
 		resetBtnID: '#resetBtn'
@@ -148,7 +149,7 @@ jQuery.fn.panelize = function( options ) {
 		console.log('Using a height offset of '+yOffset+' given height of '+scaledPanelWdith+'.');
 		
 		// Perform the actual transformation
-		$('#comicOverlay')
+		$(settings.panelViewerID)
 			.css({transformOrigin:'0px 0px'})
 			.transition({scale:scaleFactor})
 			.transition({x:-panelLeft+xOffset,y:-panelTop+yOffset});
@@ -190,7 +191,7 @@ jQuery.fn.panelize = function( options ) {
 		});*/
 		
 		return $(settings.showNextBtnID).click(function(event) {
-			console.log('Nest button activated');
+			console.log('Next button activated');
 			event.preventDefault();
 			transformPanel();
 		});	
