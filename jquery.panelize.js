@@ -57,8 +57,6 @@ jQuery.fn.panelize = function( options ) {
 		));
 	});
 	
-	console.log(panels);
-	
 	/**
 	* Start with full page option
 	* 	The full scaled page will show, unless the user opts not to,
@@ -139,50 +137,30 @@ jQuery.fn.panelize = function( options ) {
 			xOffset = Math.floor((panels.viewerWidth-scaledPanelWdith)/2);
 		}
 		
-		console.log("Panel location\ntop:"+panelTop+
-			'\nleft:'+panelLeft+
-			'\nbottom: '+panelBottom+
-			'\nright:'+panelRight+
-			'\nwidth: '+panelWidth+
-			'\nheight: '+panelHeight+
-			'\nscalefactor: '+scaleFactor);
+		console.log("Panel location: top:"+panelTop+
+			', left:'+panelLeft+
+			', bottom: '+panelBottom+
+			', right:'+panelRight+
+			', width: '+panelWidth+
+			', height: '+panelHeight+
+			', scalefactor: '+scaleFactor);
 		console.log('Using a width offset of '+xOffset+' given width of '+scaledPanelHeight+'.');
 		console.log('Using a height offset of '+yOffset+' given height of '+scaledPanelWdith+'.');
+		console.log(panels.panel[panels.panelIndex]);
 		
 		// Perform the actual transformation
 		$(settings.panelViewerID).find('img')
 			.css({transformOrigin:'0px 0px'})
 			.transition({scale:scaleFactor})
 			.transition({x:-panelLeft+xOffset,y:-panelTop+yOffset});
-			
-
+		
+		// Update location in panels object
 		panels.panelIndex += 1;
 	}
-	// Set the initial panel up
-	// NOTE: This is redundant to the next button and previous button functions; how to re-factor?
-	/* var panelTop = panels.panel[panels.panelIndex].y1;
-	var panelLeft = panels.panel[panels.panelIndex].x1;
-	var panelWidth = panels.panel[panels.panelIndex].width;
-	var panelHeight = panels.panel[panels.panelIndex].height;
-	
-	if(panelWidth > panelHeight){
-		var origin = panels.viewerWidth;
-		var scaleNorm = panelWidth;
-	} else {
-		var origin = panels.viewerHeight;
-		var scaleNorm = panelHeight;
-	}
-	var scaleFactor = origin/scaleNorm;	
-	
-	$('#comicOverlay')
-		.css({transformOrigin:'0px 0px'})
-		.transition({scale:scaleFactor})
-		.transition({x:-panelLeft,y:-panelTop});
 
-	panels.panelIndex = 1;*/
-	
-	// Set the first panel (or not--should be a setting
-
+	/**
+	* Interactive functions (UI)
+	**/
 	return this.each(function() {
 		
 		/*return $(settings.resetBtnID).click(function() {
