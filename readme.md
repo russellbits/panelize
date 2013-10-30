@@ -47,6 +47,9 @@ $('panelViewer').panelize({
     showNextBtnID : '#nextPanelBtn',
 });
 ```
++ `fullPageStart` is a boolean value. If set to `false` (the default) then panelize will zoom and pan to the first panel. A value of `true` will scale the entire image to fit inside the defined view space.
+
++ `showNextBtnID` allows you to manually set what HTML item is the button that progresses panelize. The default ID is _#nextPanelBtn_. If you set this to 'showNextPanel', you will need to create a matching anchor element (or button) with that ID, e.g. `<div><a href="#" id="showNextPanel">Next</a></div>`.
 
 Acknowledgements
 ----------------
