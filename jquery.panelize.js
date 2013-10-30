@@ -90,7 +90,7 @@ jQuery.fn.panelize = function( options ) {
 	**/
 	function transformPanel() {
 		// Reset to first panel when index hits maximum
-		if(panels.panelIndex == panels.panel.length-1) {
+		if(panels.panelIndex == panels.panel.length) {
 			panels.panelIndex = 0;
 		}
 		// Undo full page transform
@@ -147,6 +147,7 @@ jQuery.fn.panelize = function( options ) {
 		console.log('Using a width offset of '+xOffset+' given width of '+scaledPanelHeight+'.');
 		console.log('Using a height offset of '+yOffset+' given height of '+scaledPanelWdith+'.');
 		console.log(panels.panel[panels.panelIndex]);
+		console.log(panels.panel.length);
 		
 		// Perform the actual transformation
 		$(settings.panelViewerID).find('img')
