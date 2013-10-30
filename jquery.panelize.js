@@ -29,7 +29,6 @@ jQuery.fn.panelize = function( options ) {
 	var panels = {
 		panelIndex: 0,
 		panel: [],
-		anyvariable: 56,
 		viewerWidth: this.width(),
 		viewerHeight: this.height()
 	};
@@ -57,6 +56,8 @@ jQuery.fn.panelize = function( options ) {
 			coordsStrArray[3]
 		));
 	});
+	
+	console.log(panels);
 	
 	/**
 	* Start with full page option
