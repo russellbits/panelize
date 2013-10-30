@@ -149,7 +149,7 @@ jQuery.fn.panelize = function( options ) {
 		console.log('Using a height offset of '+yOffset+' given height of '+scaledPanelWdith+'.');
 		
 		// Perform the actual transformation
-		$(settings.panelViewerID)
+		$(settings.panelViewerID).find('img')
 			.css({transformOrigin:'0px 0px'})
 			.transition({scale:scaleFactor})
 			.transition({x:-panelLeft+xOffset,y:-panelTop+yOffset});
