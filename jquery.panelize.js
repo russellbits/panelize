@@ -98,10 +98,8 @@ jQuery.fn.panelize = function( options ) {
 	function transformPanel(dir) {
 		// If previous, 
 		if(dir=='prev') {
-			console.log('Decreasing index for previous');
 			panels.panelIndex -= 1;
 		} else {
-			console.log('Increasing index for next');
 			panels.panelIndex += 1;
 		}
 		
@@ -158,11 +156,6 @@ jQuery.fn.panelize = function( options ) {
 			', width: '+panelWidth+
 			', height: '+panelHeight+
 			', scalefactor: '+scaleFactor);
-		// console.log('Using a width offset of '+xOffset+' given width of '+scaledPanelHeight+'.');
-		// console.log('Using a height offset of '+yOffset+' given height of '+scaledPanelWdith+'.');
-		// console.log(panels.panel[panels.panelIndex]);
-		
-		// console.log('Panel length: '+panels.panel.length);
 		
 		// Perform the actual transformation
 		var Xmove = -panelLeft+xOffset;
@@ -171,13 +164,6 @@ jQuery.fn.panelize = function( options ) {
 		comic.css({transformOrigin:'0px 0px'})
 			.animate({left:Xmove*scaleFactor,top:Ymove*scaleFactor,scale:scaleFactor});
 		
-		// Update location in panels object
-		/*if(dir=='next') {
-			panels.panelIndex += 1;
-		} else {
-			console.log('Decreasing index for previous');
-			panels.panelIndex -= 1;
-		}*/
 	}
 
 	/**
