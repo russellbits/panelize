@@ -74,8 +74,6 @@ jQuery.fn.panelize = function( options ) {
 	if(settings.fullPageStart) {
 		var xOffset = 0;
 		var yOffset = 0;
-		var Xmove = -panelLeft+xOffset;
-		var Ymove = -panelTop+yOffset;
 		comic = $(settings.panelViewerID).find('img');
 		if(comic.width() > comic.height()) {
 			scaleFactor = panels.viewerWidth/comic.width();
@@ -88,6 +86,8 @@ jQuery.fn.panelize = function( options ) {
 			console.log('xOffset: '+xOffset);
 			console.log('Comic is '+comic.height()+'  tall');
 		}
+		var Xmove = 0;
+		var Ymove = 0;
 		comic.css({transformOrigin:'0px 0px'})
 			.animate({left:Xmove*scaleFactor,top:Ymove*scaleFactor,scale:scaleFactor});
 	} else {
