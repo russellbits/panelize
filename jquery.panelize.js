@@ -64,6 +64,8 @@ jQuery.fn.panelize = function( options ) {
 		}
 	});
 	
+	var comic = $(settings.panelViewerID).find('img');
+
 	/**
 	* Start with full page option
 	* 	The full scaled page will show, unless the user opts not to,
@@ -84,10 +86,8 @@ jQuery.fn.panelize = function( options ) {
 			console.log('xOffset: '+xOffset);
 			console.log('Comic is '+comic.height()+'  tall');
 		}
-		$(settings.panelViewerID).find('img')
-			.css({transformOrigin:'0px 0px'})
-			.transition({x:xOffset,y:yOffset})
-			.transition({scale:scaleFactor});
+		comic.css({transformOrigin:'0px 0px'})
+			.animate({left:Xmove*scaleFactor,top:Ymove*scaleFactor,scale:scaleFactor});
 	} else {
 		transformPanel();
 	}
@@ -160,7 +160,6 @@ jQuery.fn.panelize = function( options ) {
 		// Perform the actual transformation
 		var Xmove = -panelLeft+xOffset;
 		var Ymove = -panelTop+yOffset;
-		var comic = $(settings.panelViewerID).find('img');
 
 		comic.css({transformOrigin:'0px 0px'})
 			.animate({left:Xmove*scaleFactor,top:Ymove*scaleFactor,scale:scaleFactor});
