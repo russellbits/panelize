@@ -9,10 +9,10 @@
  * http://github.com/russellbits/panelize
 
  * TDODs
- * + Work out index bug
- * + Previous button
- * + Create transitions without transit.js dependency
- * + Create alternate area for link w/out pan/zoom
+ * + DONE? Work out index bug
+ * + Previous button - any button - current structure returns only next function
+ * + DONE! YAY! Create transitions without transit.js dependency
+ * + DONE YAY! Create alternate area for link w/out pan/zoom
  * + Needs a pre-loading function for large images
 */
 
@@ -50,14 +50,18 @@ jQuery.fn.panelize = function( options ) {
 	// Intialize the panels in the comic
 	// Assign area tag coordinates to the panels object
 	$(this).find('area').each(function(i) {
-		var coords = $(this).attr('coords');
-		var coordsStrArray = coords.split(',');
-		panels.panel.push(new Panel(
-			coordsStrArray[0],
-			coordsStrArray[1],
-			coordsStrArray[2],
-			coordsStrArray[3]
-		));
+		if($(this).attr("target")!=null||$(this).attr("target")=="") {}
+		else {
+			console.log($(this).attr("target"));
+			var coords = $(this).attr('coords');
+			var coordsStrArray = coords.split(',');
+			panels.panel.push(new Panel(
+				coordsStrArray[0],
+				coordsStrArray[1],
+				coordsStrArray[2],
+				coordsStrArray[3]
+			));
+		}
 	});
 	
 	/**
@@ -80,7 +84,7 @@ jQuery.fn.panelize = function( options ) {
 			console.log('xOffset: '+xOffset);
 			console.log('Comic is '+comic.height()+'  tall');
 		}
-		$('#comicOverlay')
+		$(settings.panelViewerID).find('img')
 			.css({transformOrigin:'0px 0px'})
 			.transition({x:xOffset,y:yOffset})
 			.transition({scale:scaleFactor});
@@ -150,13 +154,16 @@ jQuery.fn.panelize = function( options ) {
 		console.log('Using a width offset of '+xOffset+' given width of '+scaledPanelHeight+'.');
 		console.log('Using a height offset of '+yOffset+' given height of '+scaledPanelWdith+'.');
 		console.log(panels.panel[panels.panelIndex]);
-		console.log(panels.panel.length);
+		console.log('Current index: '+panels.panelIndex);
+		console.log('Panel length: '+panels.panel.length);
 		
 		// Perform the actual transformation
-		$(settings.panelViewerID).find('img')
-			.css({transformOrigin:'0px 0px'})
-			.transition({scale:scaleFactor})
-			.transition({x:-panelLeft+xOffset,y:-panelTop+yOffset});
+		var Xmove = -panelLeft+xOffset;
+		var Ymove = -panelTop+yOffset;
+		var comic = $(settings.panelViewerID).find('img');
+
+		comic.css({transformOrigin:'0px 0px'})
+			.animate({left:Xmove*scaleFactor,top:Ymove*scaleFactor,scale:scaleFactor});
 		
 		// Update location in panels object
 		panels.panelIndex += 1;
@@ -177,7 +184,13 @@ jQuery.fn.panelize = function( options ) {
 			console.log('Next button activated');
 			event.preventDefault();
 			transformPanel();
-		});	
+		});
+		
+		return $(settings.showPrevBtnID).click(function(event) {
+			console.log('Previous button activated');
+			event.preventDefault();
+			transformPanel();
+		});
 		
 	});
 	
