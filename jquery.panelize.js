@@ -74,6 +74,8 @@ jQuery.fn.panelize = function( options ) {
 	if(settings.fullPageStart) {
 		var xOffset = 0;
 		var yOffset = 0;
+		var Xmove = -panelLeft+xOffset;
+		var Ymove = -panelTop+yOffset;
 		comic = $(settings.panelViewerID).find('img');
 		if(comic.width() > comic.height()) {
 			scaleFactor = panels.viewerWidth/comic.width();
