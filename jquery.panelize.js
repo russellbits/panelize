@@ -89,6 +89,7 @@ jQuery.fn.panelize = function( options ) {
 		panels.panelIndex = 0;
 
 	} else {
+		panels.panelIndex = -1;
 		transformPanel();
 	}
 	
