@@ -2,19 +2,11 @@
  * jQuery Panelize - v0.8b - 2013-10-29
  * Image navigation with image maps
  * 
- * (c) 2013 R.E. Warner <rewarner@russellbits.com>
+ * (c) 2013 R.E. Warner @belovedleader
  * MIT Licensed.
  *
  * http://russellbits.github.io/panelize
  * http://github.com/russellbits/panelize
-
- * TDODs
- * + DONE? Work out index bug
- * + DONE! Create full image option
- * + Previous button - any button - current structure returns only next function
- * + DONE! YAY! Create transitions without transit.js dependency
- * + DONE YAY! Create alternate area for link w/out pan/zoom
- * + Needs a pre-loading function for large images
 */
 
 jQuery.fn.panelize = function( options ) {
@@ -94,7 +86,7 @@ jQuery.fn.panelize = function( options ) {
 		comic.css({transformOrigin:'0px 0px'})
 			.animate({left:xOffset,top:yOffset,scale:scaleFactor});
 		
-		panels.panelIndex = 1;
+		panels.panelIndex = 0;
 
 	} else {
 		transformPanel();
@@ -103,16 +95,23 @@ jQuery.fn.panelize = function( options ) {
 	/**
 	* MAIN TRANSFORM FUNCTION
 	**/
-	function transformPanel() {
+	function transformPanel(dir) {
+		// If previous, 
+		if(dir=='prev') {
+			console.log('Decreasing index for previous');
+			panels.panelIndex -= 1;
+		} else {
+			console.log('Increasing index for next');
+			panels.panelIndex += 1;
+		}
+		
 		// Reset to first panel when index hits maximum
-		if(panels.panelIndex == panels.panel.length) {
+		if(panels.panelIndex == panels.panel.length || panels.panelIndex < 0) {
 			panels.panelIndex = 0;
 		}
-		// Undo full page transform
-		if(settings.fullPageStart && panels.panelIndex == 0) {
-			console.log('Returning to initial scale and position');
-			//$('#comicOverlay').css({transformOrigin:'0px 0px'}).transition({x:0,y:0}).transition({scale:1});
-		}
+		
+		console.log('Current index: '+panels.panelIndex);
+
 		// Assign local variables
 		var panelTop = panels.panel[panels.panelIndex].y1;
 		var panelLeft = panels.panel[panels.panelIndex].x1;
@@ -159,11 +158,11 @@ jQuery.fn.panelize = function( options ) {
 			', width: '+panelWidth+
 			', height: '+panelHeight+
 			', scalefactor: '+scaleFactor);
-		console.log('Using a width offset of '+xOffset+' given width of '+scaledPanelHeight+'.');
-		console.log('Using a height offset of '+yOffset+' given height of '+scaledPanelWdith+'.');
-		console.log(panels.panel[panels.panelIndex]);
-		console.log('Current index: '+panels.panelIndex);
-		console.log('Panel length: '+panels.panel.length);
+		// console.log('Using a width offset of '+xOffset+' given width of '+scaledPanelHeight+'.');
+		// console.log('Using a height offset of '+yOffset+' given height of '+scaledPanelWdith+'.');
+		// console.log(panels.panel[panels.panelIndex]);
+		
+		// console.log('Panel length: '+panels.panel.length);
 		
 		// Perform the actual transformation
 		var Xmove = -panelLeft+xOffset;
@@ -173,32 +172,27 @@ jQuery.fn.panelize = function( options ) {
 			.animate({left:Xmove*scaleFactor,top:Ymove*scaleFactor,scale:scaleFactor});
 		
 		// Update location in panels object
-		panels.panelIndex += 1;
+		/*if(dir=='next') {
+			panels.panelIndex += 1;
+		} else {
+			console.log('Decreasing index for previous');
+			panels.panelIndex -= 1;
+		}*/
 	}
 
 	/**
 	* Interactive functions (UI)
 	**/
-	return this.each(function() {
-		
-		/*return $(settings.resetBtnID).click(function() {
-			console.log('reset function activated');
-			panels.panelIndex = 0;
-			$('#comic').transition({x:0,y:0}).transition({scale:1});
-		});*/
-		
-		return $(settings.showNextBtnID).click(function(event) {
-			console.log('Next button activated');
-			event.preventDefault();
-			transformPanel();
-		});
-		
-		return $(settings.showPrevBtnID).click(function(event) {
-			console.log('Previous button activated');
-			event.preventDefault();
-			transformPanel();
-		});
-		
+	$(settings.showNextBtnID).click(function(event) {
+		console.log('Next button activated');
+		event.preventDefault();
+		transformPanel('next');
 	});
 	
+	$(settings.showPrevBtnID).click(function(event) {
+		console.log('Previous button activated');
+		event.preventDefault();
+		transformPanel('prev');
+	});
+			
 };
