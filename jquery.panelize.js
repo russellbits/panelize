@@ -1,5 +1,5 @@
 /*!
- * jQuery Panelize - v0.7b - 2013-10-29
+ * jQuery Panelize - v0.8b - 2013-10-29
  * Image navigation with image maps
  * 
  * (c) 2013 R.E. Warner <rewarner@russellbits.com>
@@ -10,6 +10,7 @@
 
  * TDODs
  * + DONE? Work out index bug
+ * + DONE! Create full image option
  * + Previous button - any button - current structure returns only next function
  * + DONE! YAY! Create transitions without transit.js dependency
  * + DONE YAY! Create alternate area for link w/out pan/zoom
@@ -20,7 +21,7 @@ jQuery.fn.panelize = function( options ) {
 	
 	var defaults = {
 		container: this, // this should be used as opposed to explicit jquery references
-		fullPageStart: true,
+		fullImageStart: true,
 		panelViewerID : '#panelViewer',
 		showNextBtnID : '#nextPanelBtn',
 		showPrevBtnID : '#prevPanelBtn',
@@ -48,11 +49,10 @@ jQuery.fn.panelize = function( options ) {
 	console.log('Viewer: '+panels.viewerWidth+', '+panels.viewerHeight);
 	
 	// Intialize the panels in the comic
-	// Assign area tag coordinates to the panels object
+	// Assign area tag coordinates to the panels object (left,top,right,bottom)
 	$(this).find('area').each(function(i) {
 		if($(this).attr("target")!=null||$(this).attr("target")=="") {}
 		else {
-			console.log($(this).attr("target"));
 			var coords = $(this).attr('coords');
 			var coordsStrArray = coords.split(',');
 			panels.panel.push(new Panel(
@@ -71,23 +71,31 @@ jQuery.fn.panelize = function( options ) {
 	* 	The full scaled page will show, unless the user opts not to,
 	* 	in which case, the first panel will zoom and show
 	**/
-	if(settings.fullPageStart) {
+	if(settings.fullImageStart) {
 		var xOffset = 0;
 		var yOffset = 0;
 		comic = $(settings.panelViewerID).find('img');
+		
+		// Add additional coordinates to return to full image
+		panels.panel.unshift(new Panel(
+			0,
+			0,
+			comic.width(),
+			comic.height()
+		));
+		
 		if(comic.width() > comic.height()) {
 			scaleFactor = panels.viewerWidth/comic.width();
 			yOffset = Math.floor(((panels.viewerHeight-(comic.height()*scaleFactor))/2));
-			console.log('yOffset: '+yOffset);
-			console.log('Comic is '+comic.width()+' wide');
 		} else {
 			scaleFactor = panels.viewerHeight/comic.height();
 			xOffset = Math.floor(((panels.viewerWidth-(comic.width()*scaleFactor))/2));
-			console.log('xOffset: '+xOffset);
-			console.log('Comic is '+comic.height()+'  tall');
 		}
 		comic.css({transformOrigin:'0px 0px'})
-			.animate({left:Xmove*scaleFactor,top:Ymove*scaleFactor,scale:scaleFactor});
+			.animate({left:xOffset,top:yOffset,scale:scaleFactor});
+		
+		panels.panelIndex = 1;
+
 	} else {
 		transformPanel();
 	}
