@@ -1,0 +1,105 @@
+@import url(http://fonts.googleapis.com/css?family=Patua+One);
+
+/*
+font-family: 'Patua One', sans-serif;
+*/
+
+* {
+	padding: 0;
+	margin: 0;
+}
+
+html,body {
+	font: 1em "Trebuchet MS", sans-serif;
+}
+
+body {
+	overflow-x: hidden;
+	background-color: #777;
+}
+
+#logo {
+	position: relative;
+	width: 355px;
+	margin: 25px auto 0 auto;
+	z-index: 1000;
+}
+
+#shareBar {
+	font: 16px 'Patua One', sans-serif;
+	/* text-shadow: 1px 1px 1px #777; */
+	position: relative;
+	width: 940px;
+	height: 30px;
+	margin: 10px auto 0 auto;
+	border-bottom: 1px solid #333;
+}
+	#shareBar a {
+		color: #333;
+		text-decoration: none;
+	}
+	
+	#shareBar a:hover {
+		text-decoration: underline;
+	}
+	
+	#shareBar div {
+		display: inline-block;
+	}
+	
+	.shareLinks {
+		margin-top: 6px;	
+	}
+	
+	.shareButtons {
+		margin-top: 4px;
+		float: right;
+	}
+	
+	.shareButtons div {
+		display: inline-block;
+	}	
+
+	#shareBar div:last-child {
+	
+	}
+
+#comic {
+	position: relative;
+	width: 920px;
+	height: 600px;
+	margin: -33px auto 0 auto;
+	z-index: 10;
+}
+
+#panelViewer {
+	width: 780px;
+	display: inline-block;
+	background-color: #c06125;
+}
+
+#panelControlsLeft {
+	width: 68px;
+	height: 600px;
+	display: inline-block;
+	float: left;
+	margin-right: -20px;
+}
+
+#panelControlsLeft img {
+	padding: 265px 0 0 0;
+	margin: 0 0 0 0;
+}
+
+#panelControlsRight {
+	width: 68px;
+	height: 600px;
+	display: inline-block;
+	float: right;
+	margin-left: -180px;
+}
+
+#panelControlsRight img {
+	padding: 265px 0 0 0;
+	margin-left: -40px;
+}

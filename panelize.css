@@ -1,0 +1,15 @@
+#panelViewer {
+	position: relative;
+	width: 800px;
+	height: 550px;
+	margin: 0 auto 0 auto;
+	overflow: hidden;
+	background-color: black;
+	border: 2px solid black;
+}
+
+#panelViewer img {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
