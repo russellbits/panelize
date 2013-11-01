@@ -7,10 +7,9 @@
 		"zoom",
 		"pan",
 		"navigation",
-		"image map",
         "animation"
     ],
-    "version": "0.8b",
+    "version": "0.8.0 - beta",
     "author": {
         "name": "R. E. Warner",
         "url": "http://russellbits.com"
