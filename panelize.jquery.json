@@ -1,0 +1,38 @@
+{
+    "name": "panelize",
+    "title": "jQuery Panelize",
+    "description": "A jquery plugin that allows a user to navigate an image by using an HTML image map.",
+    "keywords": [
+        "comic",
+		"zoom",
+		"pan",
+		"navigation",
+		"image map",
+        "animation"
+    ],
+    "version": "0.8b",
+    "author": {
+        "name": "R. E. Warner",
+        "url": "http://russellbits.com"
+    },
+    "maintainers": [
+        {
+            "name": "Russell Warner",
+            "email": "panelize@russellbits.com",
+            "url": "http://russellbits.com"
+        }
+    ],
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/russellbits/panelize/blob/master/LICENSE"
+        }
+    ],
+    "bugs": "https://github.com/russellbits/panelize/issues",
+    "homepage": "https://russellbits.github.io/panelize",
+    "docs": "https://github.com/russellbits/panelize",
+    "download": "https://raw.github.com/russellbits/panelize/master/jquery.panelize.js",
+    "dependencies": {
+        "jquery": ">=1.5"
+    }
+}
