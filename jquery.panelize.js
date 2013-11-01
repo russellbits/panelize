@@ -1,5 +1,5 @@
 /*!
- * jQuery Panelize - v0.8b - 2013-10-29
+ * jQuery Panelize - v0.8.2 - 2013-11-01
  * Image navigation with image maps
  * 
  * (c) 2013 R.E. Warner @belovedleader
@@ -37,8 +37,6 @@ jQuery.fn.panelize = function( options ) {
 		this.width = this.x2 - this.x1;
 		this.height = this.y2 - this.y1;
 	}
-
-	console.log('Viewer: '+panels.viewerWidth+', '+panels.viewerHeight);
 	
 	// Intialize the panels in the comic
 	// Assign area tag coordinates to the panels object (left,top,right,bottom)
@@ -56,7 +54,7 @@ jQuery.fn.panelize = function( options ) {
 		}
 	});
 	
-	var comic = $(settings.panelViewerID).find('img');
+	var comic = $(settings.panelViewerID).find('img:first');
 
 	/**
 	* Start with full page option
@@ -66,7 +64,6 @@ jQuery.fn.panelize = function( options ) {
 	if(settings.fullImageStart) {
 		var xOffset = 0;
 		var yOffset = 0;
-		comic = $(settings.panelViewerID).find('img');
 		
 		// Add additional coordinates to return to full image
 		panels.panel.unshift(new Panel(
