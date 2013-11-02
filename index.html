@@ -9,23 +9,15 @@
 	<link rel="stylesheet" href="style.css" type="text/css" media="screen"/>
 	
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-	<!-- for local 1.7.4 uncomment <script src="jquery.js"></script> -->
-	<!-- TODO incorporate genhex into panelover <script src="/assets/js/genhex.js"></script>-->
 	<script src="https://raw.github.com/rstacruz/jquery.transit/master/jquery.transit.js"></script>
-	<!--<script src="jquery.paneloverlay.js"></script>-->
 	<script src="jquery.backstretch.js"></script>
 	<script src="http://raw.github.com/russellbits/panelize/master/jquery.panelize.js"></script>
 	<!--<script src="jquery.panelize.js"></script>-->
-	<!--<script src="jquery.panelize.with.transit.js"></script>-->
-	
 	<script type="text/javascript">
 	
 	$(document).ready(function() {
 		$('#panelViewer').panelize();
 		$('body').backstretch('panelize-background.gif');
-		// Re-create mouseover areas with colored divs		
-		// $('#panelMap').panelOverlay();
-		// $('#panelViewer').panelize({fullPageStart:false});
 	});
 	</script>
 
@@ -36,7 +28,7 @@
 	<div class="shareLinks">
 		<span>Issue #1!</span>
 		<span style="margin-left:30px;"></span>
-		<a href="http://raw.github.com/russellbits/panelize/master/jquery.panelize.js">Download the Plugin</a>
+		<a href="http://raw.github.com/russellbits/panelize/master/jquery.panelize.js">Download</a>
 		<span style="margin-left:30px;"></span>
 		<a href="http://github.com/russellbits/panelize">View on Github</a>
 	</div>
@@ -55,41 +47,33 @@
 
 <div id="logo"><img src="panelize-logo.png" alt="panelize-logo" width="355" height="114"></div>
 
-<div id="comic">
+<div id="panelViewer">
+	<img src="panelize-explained.png" usemap="#panelMap" border="0" width="2249" height="1350" alt="Panelize, the Comic"/>
 
-	<div id="panelControlsLeft">
-		<a href="#" id="prevPanelBtn"><img src="btn-previous.png" alt="Previous Button" width="70" height="70"></a>
-	</div>
+	<map name="panelMap">
+		<area shape="rect" alt="Link to Image Map Editor" title="" coords="147,992,467,1062" href="http://www.maschek.hu/imagemap/imgmap" target="_self" />
+		<area shape="rect" alt="Panel 1" title="" coords="772,28,1404,268" href="#" />
+		<area shape="rect" alt="Panel 2" title="" coords="772,264,1404,492" href="#" />
+		<area shape="rect" alt="Title Panel" title="" coords="696,476,1504,984" href="#" />
+		<area shape="rect" alt="Slogan Panel" title="" coords="840,896,1340,1124" href="#" />
+		<area shape="rect" alt="Panel 5" title="" coords="760,972,1416,1332" href="#" />
+		<area shape="rect" alt="Code Display Panel" title="" coords="16,16,748,392" href="#" />
+		<area shape="rect" alt="Dumb Questions" title="" coords="16,356,744,880" href="#" />
+		<area shape="rect" alt="Getting Started" title="" coords="16,888,744,1324" href="#" />
+		<area shape="rect" alt="Set up instructions" title="" coords="1432,16,2224,440" href="#" />
+		<area shape="rect" alt="Using CSS" title="" coords="1728,432,2204,600" href="#" />
+		<area shape="rect" alt="Using CSS with code" title="" coords="1448,432,2232,800" href="#" />
+		<area shape="rect" alt="Size Example" title="" coords="1504,704,2232,1140" href="#" />
+		<area shape="rect" alt="Fin" title="" coords="1444,980,2216,1316" href="#" />
+		<!-- Created by Online Image Map Editor (http://www.maschek.hu/imagemap/index) -->
+	
+	</map>
+	
+	<a href="#" id="prevPanelBtn" class="panelControl left"><img src="btn-previous.png" alt="Previous Button" width="70" height="70"></a>
+	
+	<a href="#" id="nextPanelBtn" class="panelControl right"><img src="btn-next.png" alt="Next Button" width="70" height="70"></a>
 
-	<div id="panelViewer">
-		<img src="panelize-explained.png" usemap="#panelMap" border="0" width="2249" height="1350" alt="Panelize, the Comic"/>
-
-		<map name="panelMap">
-			<area shape="rect" alt="Link to Image Map Editor" title="" coords="147,992,467,1062" href="http://www.maschek.hu/imagemap/imgmap" target="_self" />
-			<area shape="rect" alt="Panel 1" title="" coords="772,28,1404,268" href="#" />
-			<area shape="rect" alt="Panel 2" title="" coords="772,264,1404,492" href="#" />
-			<area shape="rect" alt="Title Panel" title="" coords="696,476,1504,984" href="#" />
-			<area shape="rect" alt="Slogan Panel" title="" coords="840,896,1340,1124" href="#" />
-			<area shape="rect" alt="Panel 5" title="" coords="760,972,1416,1332" href="#" />
-			<area shape="rect" alt="Code Display Panel" title="" coords="16,16,748,392" href="#" />
-			<area shape="rect" alt="Dumb Questions" title="" coords="16,356,744,880" href="#" />
-			<area shape="rect" alt="Getting Started" title="" coords="16,888,744,1324" href="#" />
-			<area shape="rect" alt="Set up instructions" title="" coords="1432,16,2224,440" href="#" />
-			<area shape="rect" alt="Using CSS" title="" coords="1728,432,2204,600" href="#" />
-			<area shape="rect" alt="Using CSS with code" title="" coords="1448,432,2232,800" href="#" />
-			<area shape="rect" alt="Size Example" title="" coords="1504,704,2232,1140" href="#" />
-			<area shape="rect" alt="Fin" title="" coords="1444,980,2216,1316" href="#" />
-			<!-- Created by Online Image Map Editor (http://www.maschek.hu/imagemap/index) -->
-		
-		</map>
-	</div>
-
-	<div id="panelControlsRight">
-		<a href="#" id="nextPanelBtn"><img src="btn-next.png" alt="Next Button" width="70" height="70"></a>
-	</div>
 </div>
-
-<!--<div><button id="resetBtn" value="next">Reset</button></div>-->
 
 </body>
 </html>

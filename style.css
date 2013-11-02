@@ -21,7 +21,7 @@ body {
 #logo {
 	position: relative;
 	width: 355px;
-	margin: 25px auto 0 auto;
+	margin: 25px auto -35px auto;
 	z-index: 1000;
 }
 
@@ -29,7 +29,7 @@ body {
 	font: 16px 'Patua One', sans-serif;
 	/* text-shadow: 1px 1px 1px #777; */
 	position: relative;
-	width: 940px;
+	width: 780px;
 	height: 30px;
 	margin: 10px auto 0 auto;
 	border-bottom: 1px solid #333;
@@ -64,42 +64,73 @@ body {
 	
 	}
 
-#comic {
-	position: relative;
-	width: 920px;
-	height: 600px;
-	margin: -33px auto 0 auto;
-	z-index: 10;
-}
-
 #panelViewer {
-	width: 780px;
-	display: inline-block;
 	background-color: #c06125;
 }
 
-#panelControlsLeft {
-	width: 68px;
-	height: 600px;
-	display: inline-block;
-	float: left;
-	margin-right: -20px;
+.panelControl {
+	position: absolute;
+	display: block;
+	width: 70px;
+	height: 70px;
+	top: 245px;
 }
 
-#panelControlsLeft img {
-	padding: 265px 0 0 0;
-	margin: 0 0 0 0;
+.panelControl.left {
+	left: 10px;
 }
 
-#panelControlsRight {
-	width: 68px;
-	height: 600px;
-	display: inline-block;
-	float: right;
-	margin-left: -180px;
+.panelControl.right {
+	right: 10px
 }
 
-#panelControlsRight img {
-	padding: 265px 0 0 0;
-	margin-left: -40px;
+@media only screen and (max-width : 1024px) {
+
+}
+
+@media only screen and (max-width : 700px) {
+
+	#logo {
+		padding-top: 20px
+	}
+
+	#panelViewer {
+		height: 420px;
+	}
+	
+	.panelControl {
+		width: 35px;
+		height: 35px;
+	}
+
+	.panelControl img {
+		width: 35px;
+		height: 35px;
+	}
+
+	.panelControl.right {
+		right: 10px;
+	}
+
+	#shareBar {
+		width: 90%;
+		text-align: center;		
+	}
+
+	.shareLinks {
+		display: block;
+		margin-top: 6px auto 0 auto;
+		width: 90%;
+		text-align: center;
+	}
+
+	.shareButtons {
+		margin: 10px auto 0 auto;
+		float: none;
+	}
+	
+	.shareButtons div {
+		display: inline-block;
+	}
+
 }
