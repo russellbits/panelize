@@ -53,6 +53,12 @@ $('panelViewer').panelize({
 
 + `showNextBtnID` allows you to manually set what HTML item is the button that progresses panelize. The default ID is _#nextPanelBtn_. If you set this to 'showNextPanel', you will need to create a matching anchor element (or button) with that ID, e.g. `<div><a href="#" id="showNextPanel">Next</a></div>`. The `showPrevBtnID` operates in the same fashion, but is used for setting up a previous button that will reverse the panelize zoom/pan.
 
+
+Todos
+-----
++ Attach functionality for arrow keys
++ Shutters — HTML divs that slide to overlap non-image map areas, e.g. letter-boxing
+
 Acknowledgements
 ----------------
 &copy; 2013 R. E. Warner. Released under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
