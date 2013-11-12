@@ -80,6 +80,7 @@ jQuery.fn.panelize = function( options ) {
 			scaleFactor = panels.viewerHeight/comic.height();
 			xOffset = Math.floor(((panels.viewerWidth-(comic.width()*scaleFactor))/2));
 		}
+		console.log("Scaling to full scale image.");
 		comic.css({transformOrigin:'0px 0px'})
 			.animate({left:xOffset,top:yOffset,scale:scaleFactor});
 		

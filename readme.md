@@ -57,6 +57,7 @@ $('panelViewer').panelize({
 Todos
 -----
 + Attach functionality for arrow keys
++ Create a JSBin that shows how to use panelize (test if panelize can be called twice on the same page)
 + Shutters — HTML divs that slide to overlap non-image map areas, e.g. letter-boxing
 
 Acknowledgements
