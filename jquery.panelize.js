@@ -73,6 +73,8 @@ jQuery.fn.panelize = function( options ) {
 			comic.height()
 		));
 		
+		console.log('Total original width and height: '+comic.width()+', '+comic.height());
+		
 		if(comic.width() > comic.height()) {
 			scaleFactor = panels.viewerWidth/comic.width();
 			yOffset = Math.floor(((panels.viewerHeight-(comic.height()*scaleFactor))/2));
