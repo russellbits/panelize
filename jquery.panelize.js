@@ -85,7 +85,12 @@ jQuery.fn.panelize = function( options ) {
 		console.log("Scaling to full scale image by "+scaleFactor);
 			
 		comic.css({transformOrigin:'0px 0px'})
-			.animate({left:xOffset,top:yOffset,scale:'scaleFactor,scaleFactor'});
+			.animate({
+				left:xOffset,
+				top:yOffset,
+				'-webkit-transform': 'scale('+scalFactor+')',
+				'-moz-transform': 'scale('+scalFactor+')',
+				'-o-transform': 'scale('+scalFactor+')'});
 		
 		panels.panelIndex = 0;
 
