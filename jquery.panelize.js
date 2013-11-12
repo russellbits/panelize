@@ -88,9 +88,9 @@ jQuery.fn.panelize = function( options ) {
 			.animate({
 				left:xOffset,
 				top:yOffset,
-				'-webkit-transform': 'scale('+scalFactor+')',
-				'-moz-transform': 'scale('+scalFactor+')',
-				'-o-transform': 'scale('+scalFactor+')'});
+				'-webkit-transform': 'scale('+scaleFactor+')',
+				'-moz-transform': 'scale('+scaleFactor+')',
+				'-o-transform': 'scale('+scaleFactor+')'});
 		
 		panels.panelIndex = 0;
 
