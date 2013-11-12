@@ -82,7 +82,7 @@ jQuery.fn.panelize = function( options ) {
 			scaleFactor = panels.viewerHeight/comic.height();
 			xOffset = Math.floor(((panels.viewerWidth-(comic.width()*scaleFactor))/2));
 		}
-		console.log("Scaling to full scale image.");
+		console.log("Scaling to full scale image by "+scaleFactor);
 		console.log("Panel location: top:"+panelTop+
 			', left:'+panelLeft+
 			', bottom: '+panelBottom+
