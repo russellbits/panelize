@@ -92,7 +92,7 @@ jQuery.fn.panelize = function( options ) {
 			', scalefactor: '+scaleFactor);
 			
 		comic.css({transformOrigin:'0px 0px'})
-			.animate({left:xOffset,top:yOffset,scale:scaleFactor});
+			.animate({left:xOffset,top:yOffset,scale:'scaleFactor,scaleFactor'});
 		
 		panels.panelIndex = 0;
 
@@ -163,7 +163,7 @@ jQuery.fn.panelize = function( options ) {
 		var Ymove = -panelTop+yOffset;
 
 		comic.css({transformOrigin:'0px 0px'})
-			.animate({left:Xmove*scaleFactor,top:Ymove*scaleFactor,scale:scaleFactor});
+			.animate({left:Xmove*scaleFactor,top:Ymove*scaleFactor,scale:'scaleFactor,scaleFactor'});
 		
 	}
 
