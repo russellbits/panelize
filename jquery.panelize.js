@@ -73,8 +73,6 @@ jQuery.fn.panelize = function( options ) {
 			comic.height()
 		));
 		
-		console.log('Total original width and height: '+comic.width()+', '+comic.height());
-		
 		if(comic.width() > comic.height()) {
 			scaleFactor = panels.viewerWidth/comic.width();
 			yOffset = Math.floor(((panels.viewerHeight-(comic.height()*scaleFactor))/2));
@@ -82,15 +80,9 @@ jQuery.fn.panelize = function( options ) {
 			scaleFactor = panels.viewerHeight/comic.height();
 			xOffset = Math.floor(((panels.viewerWidth-(comic.width()*scaleFactor))/2));
 		}
-		console.log("Scaling to full scale image by "+scaleFactor);
-			
+		console.log("Scaling to full scale image.");
 		comic.css({transformOrigin:'0px 0px'})
-			.animate({
-				left:xOffset,
-				top:yOffset,
-				'-webkit-transform': 'scale('+scaleFactor+')',
-				'-moz-transform': 'scale('+scaleFactor+')',
-				'-o-transform': 'scale('+scaleFactor+')'});
+			.animate({left:xOffset,top:yOffset,scale:scaleFactor});
 		
 		panels.panelIndex = 0;
 
@@ -156,12 +148,20 @@ jQuery.fn.panelize = function( options ) {
 			xOffset = Math.floor((panels.viewerWidth-scaledPanelWdith)/2);
 		}
 		
+		console.log("Panel location: top:"+panelTop+
+			', left:'+panelLeft+
+			', bottom: '+panelBottom+
+			', right:'+panelRight+
+			', width: '+panelWidth+
+			', height: '+panelHeight+
+			', scalefactor: '+scaleFactor);
+		
 		// Perform the actual transformation
 		var Xmove = -panelLeft+xOffset;
 		var Ymove = -panelTop+yOffset;
 
 		comic.css({transformOrigin:'0px 0px'})
-			.animate({left:Xmove*scaleFactor,top:Ymove*scaleFactor,scale:'scaleFactor,scaleFactor'});
+			.animate({left:Xmove*scaleFactor,top:Ymove*scaleFactor,scale:scaleFactor});
 		
 	}
 
