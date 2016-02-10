@@ -17,7 +17,8 @@ jQuery.fn.panelize = function( options ) {
 		panelViewerID : '#panelViewer',
 		showNextBtnID : '#nextPanelBtn',
 		showPrevBtnID : '#prevPanelBtn',
-		resetBtnID: '#resetBtn'
+		resetBtnID: '#resetBtn',
+		nonsense: 'nonsense' //only added this setting to test my github skills
 	};
 
 	var settings = $.extend( {}, defaults, options );
