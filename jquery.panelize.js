@@ -81,7 +81,7 @@ jQuery.fn.panelize = function( options ) {
 			scaleFactor = panels.viewerHeight/comic.height();
 			xOffset = Math.floor(((panels.viewerWidth-(comic.width()*scaleFactor))/2));
 		}
-		console.log("Scaling to full scale image.");
+
 		comic.css({transformOrigin:'0px 0px'})
 			.animate({left:xOffset,top:yOffset,scale:scaleFactor});
 
@@ -107,8 +107,6 @@ jQuery.fn.panelize = function( options ) {
 		if(panels.panelIndex == panels.panel.length || panels.panelIndex < 0) {
 			panels.panelIndex = 0;
 		}
-
-		console.log('Current index: '+panels.panelIndex);
 
 		// Assign local variables
 		var panelTop = panels.panel[panels.panelIndex].y1;
@@ -149,14 +147,6 @@ jQuery.fn.panelize = function( options ) {
 			xOffset = Math.floor((panels.viewerWidth-scaledPanelWdith)/2);
 		}
 
-		console.log("Panel location: top:"+panelTop+
-			', left:'+panelLeft+
-			', bottom: '+panelBottom+
-			', right:'+panelRight+
-			', width: '+panelWidth+
-			', height: '+panelHeight+
-			', scalefactor: '+scaleFactor);
-
 		// Perform the actual transformation
 		var Xmove = -panelLeft+xOffset;
 		var Ymove = -panelTop+yOffset;
@@ -170,13 +160,11 @@ jQuery.fn.panelize = function( options ) {
 	* Interactive functions (UI)
 	**/
 	$(settings.showNextBtnID).click(function(event) {
-		console.log('Next button activated');
 		event.preventDefault();
 		transformPanel('next');
 	});
 
 	$(settings.showPrevBtnID).click(function(event) {
-		console.log('Previous button activated');
 		event.preventDefault();
 		transformPanel('prev');
 	});
