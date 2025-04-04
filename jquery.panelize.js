@@ -181,4 +181,18 @@ jQuery.fn.panelize = function( options ) {
 		transformPanel('prev');
 	});
 
+	// Add keyboard event handlers for arrow keys
+	$(document).keydown(function(event) {
+		switch(event.keyCode) {
+			case 37: // Left arrow key
+				event.preventDefault();
+				transformPanel('prev');
+				break;
+			case 39: // Right arrow key
+				event.preventDefault();
+				transformPanel('next');
+				break;
+		}
+	});
+
 };
