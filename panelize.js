@@ -86,7 +86,7 @@ class Panelize {
       this._panelIndex = 0;
       this.showFullImage();
     } else {
-      this._panelIndex = -1;
+      this._panelIndex = -1; // immediately incremented to 0 by transformPanel() below
       this.transformPanel();
     }
   }
@@ -94,7 +94,8 @@ class Panelize {
   _buildPanels() {
     const areas = this._container.querySelectorAll('area');
     areas.forEach(area => {
-      // Only process areas with no target attribute (matching original filter)
+      // Skip areas that have a target attribute (even empty) — they are links, not panels.
+      // Note: the original jQuery code had this filter inverted; this version corrects it.
       if (area.getAttribute('target') !== null) return;
 
       const coords = area.getAttribute('coords');
