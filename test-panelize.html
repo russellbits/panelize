@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Panelize Test</title>
+  <style>
+    body { font-family: sans-serif; padding: 1em; }
+    #viewer {
+      width: 600px;
+      height: 400px;
+      border: 2px solid #333;
+      background: #111;
+    }
+    #controls { margin: 1em 0; }
+    #log { font-family: monospace; font-size: 12px; margin-top: 1em; }
+    .pass { color: green; }
+    .fail { color: red; }
+  </style>
+</head>
+<body>
+  <h2>Panelize Test</h2>
+  <p>Click Next/Prev to navigate. Should animate smoothly between panels.</p>
+
+  <div id="viewer" data-panelize data-full-image-start="true"
+       data-next-btn="#btnNext" data-prev-btn="#btnPrev">
+    <img id="comic" src="https://placehold.co/900x600" usemap="#comicmap" />
+    <map name="comicmap">
+      <area coords="0,0,300,300" />
+      <area coords="300,0,900,300" />
+      <area coords="0,300,450,600" />
+      <area coords="450,300,900,600" />
+    </map>
+  </div>
+
+  <div id="controls">
+    <button id="btnPrev">&#9664; Prev</button>
+    <button id="btnNext">Next &#9654;</button>
+  </div>
+
+  <div id="log"></div>
+
+  <script type="module">
+    // Note: type="module" scripts are deferred — DOMContentLoaded fires before this
+    // inline module runs, so panelize.js auto-init has already completed by here.
+    import { Panelize } from './panelize.js';
+
+    const log = document.getElementById('log');
+    function check(label, pass) {
+      const el = document.createElement('div');
+      el.className = pass ? 'pass' : 'fail';
+      el.textContent = (pass ? '✅' : '❌') + ' ' + label;
+      log.appendChild(el);
+    }
+
+    // Wait for image to load, then run checks
+    const img = document.getElementById('comic');
+    function runChecks() {
+      const viewer = document.getElementById('viewer');
+      const p = viewer._panelize;
+
+      check('Panelize instance stored on element', !!p);
+      check('CSS injected (style#panelize-styles exists)',
+            !!document.getElementById('panelize-styles'));
+      // 4 areas + 1 synthetic full-image panel = 5
+      check('5 panels total (4 areas + 1 synthetic full-image)',
+            p._panels.length === 5);
+
+      // fullImageStart: transform should contain scale
+      const t = img.style.transform;
+      check('Initial transform applied (fullImageStart)', t.includes('scale'));
+
+      // Reference values for panel index 1 (coords 0,0,300,300):
+      // portraitMode = true (viewerWidth 600 > viewerHeight 400, name is inverted)
+      // panelWidth=300, panelHeight=300
+      // condition (300 > 300 || portraitMode == false) = (false || false) = false
+      // → height path: scaleFactor = 400/300 ≈ 1.3333
+      // scaledPanelWidth = Math.floor(300*1.3333) = 400
+      // xOffset = (600-400)/2 = 100; yOffset = 0
+      // Xmove = -0 + 100 = 100, Ymove = -0 + 0 = 0
+      // Expected: translate(133.33px, 0px) scale(1.3333...)
+
+      document.getElementById('btnNext').click();
+      const t2 = img.style.transform;
+      check('transform changes after Next click', t2 !== t);
+      check('transform contains scale after Next', t2.includes('scale'));
+
+      // Test fullImageStart: false path
+      const viewer2 = document.createElement('div');
+      viewer2.setAttribute('data-panelize', '');
+      viewer2.style.width = '600px';
+      viewer2.style.height = '400px';
+      viewer2.style.position = 'absolute';
+      viewer2.style.left = '-9999px';
+      const img2 = new Image();
+      img2.src = 'https://placehold.co/900x600';
+      const map2 = document.createElement('map');
+      map2.name = 'testmap2';
+      ['0,0,300,300', '300,0,600,300'].forEach(c => {
+        const a = document.createElement('area');
+        a.setAttribute('coords', c);
+        map2.appendChild(a);
+      });
+      img2.setAttribute('usemap', '#testmap2');
+      viewer2.appendChild(img2);
+      viewer2.appendChild(map2);
+      document.body.appendChild(viewer2);
+
+      function testFalseStart() {
+        const p2 = new Panelize(viewer2, { fullImageStart: false });
+        // With fullImageStart false, no synthetic panel prepended → panels.length = 2
+        check('fullImageStart:false — 2 panels (no synthetic)', p2._panels.length === 2);
+        // panelIndex should be 0 after init
+        check('fullImageStart:false — starts at index 0', p2._panelIndex === 0);
+      }
+
+      if (img2.complete && img2.offsetWidth > 0) {
+        testFalseStart();
+      } else {
+        img2.addEventListener('load', testFalseStart, { once: true });
+      }
+    }
+
+    if (img.complete && img.offsetWidth > 0) {
+      runChecks();
+    } else {
+      img.addEventListener('load', runChecks, { once: true });
+    }
+  </script>
+</body>
+</html>
