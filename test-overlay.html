@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PanelOverlay Test</title>
+  <style>
+    #container {
+      position: relative;
+      display: inline-block;
+    }
+    .panel {
+      position: absolute;
+      border: 2px solid rgba(255, 0, 0, 0.5);
+      background: rgba(255, 0, 0, 0.1);
+      box-sizing: border-box;
+      font-size: 10px;
+      color: red;
+    }
+    .panelHighlight {
+      background: rgba(255, 0, 0, 0.35);
+    }
+    #result { margin-top: 1em; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <h2>PanelOverlay Test</h2>
+  <p>Red boxes should appear over each panel area. Hover to highlight.</p>
+
+  <div id="container" data-panel-overlay>
+    <img src="https://placehold.co/600x400" usemap="#testmap" />
+    <map name="testmap">
+      <area coords="0,0,200,200" />
+      <area coords="200,0,400,200" />
+      <area coords="400,0,600,200" />
+      <area coords="0,200,600,400" />
+    </map>
+  </div>
+
+  <div id="result"></div>
+
+  <script type="module">
+    import PanelOverlay from './paneloverlay.js';
+
+    // Verify: 4 overlay divs created
+    const container = document.getElementById('container');
+    const divs = container.querySelectorAll('.panel');
+    const result = document.getElementById('result');
+
+    if (divs.length === 4) {
+      result.textContent = '✅ PASS: 4 overlay divs created';
+      result.style.color = 'green';
+    } else {
+      result.textContent = `❌ FAIL: expected 4 overlay divs, got ${divs.length}`;
+      result.style.color = 'red';
+    }
+
+    // Verify positions of first div
+    const first = divs[0];
+    const checks = [
+      ['top', '0px'],
+      ['left', '0px'],
+      ['width', '200px'],
+      ['height', '200px'],
+    ];
+    const failures = checks.filter(([prop, expected]) => first.style[prop] !== expected);
+    if (failures.length === 0) {
+      result.textContent += ' | ✅ PASS: first div positioned correctly';
+    } else {
+      result.textContent += ' | ❌ FAIL: ' + JSON.stringify(failures);
+    }
+  </script>
+</body>
+</html>
