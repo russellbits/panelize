@@ -41,6 +41,9 @@
   <script type="module">
     import PanelOverlay from './paneloverlay.js';
 
+    // Note: type="module" scripts are deferred — DOMContentLoaded fires before this
+    // inline module runs, so paneloverlay.js auto-init has already completed by here.
+
     // Verify: 4 overlay divs created
     const container = document.getElementById('container');
     const divs = container.querySelectorAll('.panel');
