@@ -95,7 +95,8 @@ class Panelize {
     const areas = this._container.querySelectorAll('area');
     areas.forEach(area => {
       // Skip areas that have a target attribute (even empty) — they are links, not panels.
-      // Note: the original jQuery code had this filter inverted; this version corrects it.
+      // This faithfully replicates the original jQuery behavior (which used a confusingly
+      // written but functionally equivalent condition: empty-body if + else for the work).
       if (area.getAttribute('target') !== null) return;
 
       const coords = area.getAttribute('coords');
