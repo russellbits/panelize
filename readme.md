@@ -47,7 +47,7 @@ Configure with `data-*` attributes on the container:
 
 ## Panel Overlay (debug tool)
 
-`paneloverlay.js` draws colored boxes over all image map areas for visual debugging.
+`paneloverlay.js` draws colored boxes over all image map areas for visual debugging. No JavaScript required — any element with `data-panel-overlay` is initialized automatically on `DOMContentLoaded`.
 
     <script type="module" src="paneloverlay.js"></script>
 
