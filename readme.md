@@ -1,71 +1,82 @@
-# [jQuery Panelize](http://russellbits.com/jquery.panelize)
+# Panelize
 #### Navigation for images based on HTML image maps
 
-jQuery Panelize is a plugin built largely to assist in navigating web comics, although it can additionally be used for presentations, interactive maps, and SVG.
+Panelize is a vanilla JS ES module for navigating web comics, presentations, or any large image using HTML image maps. It pans and zooms to each mapped area using CSS `transform` animation — no jQuery, no dependencies.
 
-Refer to the [jQuery Panelize website](http://russellbits.github.io/panelize/) for live example.
+## Usage
 
-Usage
------
+Include the script as an ES module:
 
-Include the panelize script after your jQuery request. Requires jQuery 1.4+.
+    <script type="module" src="panelize.js"></script>
 
-```html
-<script src='jquery.js'></script>
-<script src='jquery.panelize.js'></script>  
-```
+Wrap your image in a container div with `data-panelize`. The `<map>` must be **inside** the container:
 
-Intially setting up the panelize area requires a call to the plugin. Wrap your image with a div tag with the "panelViewer" id, like so
+    <div data-panelize style="width: 800px; height: 600px;">
+      <img src="yourImage.jpg" usemap="#panels" />
+      <map name="panels">
+        <area coords="0,0,400,300" />
+        <area coords="400,0,800,300" />
+        <area coords="0,300,800,600" />
+      </map>
+    </div>
 
-```html
-<div id="panelViewer"><img src="yourImage" usemap="#yourMapName"/></div>
-```
+    <button id="nextPanelBtn">Next</button>
+    <button id="prevPanelBtn">Previous</button>
 
-add your image map information below that and call panelize anywhere in the document, after the DOM has loaded:
+That's it — no JavaScript required for basic use.
 
-```javascript
-$(document).ready(function() {
-	$('panelViewer').panelize();
-});
-```
+## Settings
 
-Setting up next and previous buttons
----------------
-Simply use the HTML id `showNextPanel` on any anchor element to create a link that will advance the plugin navigation, e.g.
+Configure with `data-*` attributes on the container:
 
-```html
-<div><a href="#" id="showNextPanel">Next</a></div>
-```
+| Attribute | Default | Description |
+|---|---|---|
+| `data-full-image-start` | `"true"` | Show full scaled image first; `"false"` to start at first panel |
+| `data-next-btn` | `"#nextPanelBtn"` | CSS selector for the Next button |
+| `data-prev-btn` | `"#prevPanelBtn"` | CSS selector for the Prev button |
 
-Settings
---------
-Default settings in panelize can be changed when the plugin is first called. The code below illustrates how the settings can be changed from their defaults.
+## Programmatic API
 
-```javascript
-$('panelViewer').panelize({
-    fullPageStart: false,
-    showNextBtnID : '#yourNextButtonName',
-	showPrevBtnID : '#yourPreviousButtonName',
-});
-```
+    import { Panelize } from './panelize.js';
 
-+ `fullPageStart` is a boolean value. If set to `false` (the default) then panelize will zoom and pan to the first panel. A value of `true` will scale the entire image to fit inside the defined view space. The default value is `true`.
+    const p = new Panelize(document.querySelector('#myViewer'), {
+      fullImageStart: true,
+      nextBtn: '#myNextBtn',
+      prevBtn: '#myPrevBtn'
+    });
 
-+ `showNextBtnID` allows you to manually set what HTML item is the button that progresses panelize. The default ID is _#nextPanelBtn_. If you set this to 'showNextPanel', you will need to create a matching anchor element (or button) with that ID, e.g. `<div><a href="#" id="showNextPanel">Next</a></div>`. The `showPrevBtnID` operates in the same fashion, but is used for setting up a previous button that will reverse the panelize zoom/pan.
+## Panel Overlay (debug tool)
 
+`paneloverlay.js` draws colored boxes over all image map areas for visual debugging.
 
-Todos
------
-+ Attach functionality for arrow keys
-+ Create a JSBin that shows how to use panelize (test if panelize can be called twice on the same page)
-+ Shutters — HTML divs that slide to overlap non-image map areas, e.g. letter-boxing
+    <script type="module" src="paneloverlay.js"></script>
 
-Acknowledgements
-----------------
-&copy; 2013 R. E. Warner. Released under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
+    <div data-panel-overlay style="position: relative; display: inline-block;">
+      <img src="yourImage.jpg" usemap="#panels" />
+      <map name="panels">
+        <area coords="0,0,400,300" />
+      </map>
+    </div>
 
-jQuery Panelize is authored and maintained by [R. E. Warner](http://russellbits.com) with help from [contributors](http://github.com/russellbits/panelize/contributors) on Github.
+Add CSS for the overlay boxes (the module does not inject these — you must provide them):
 
-+ [My Home Page](http://russellbits.com)
-+ [Github profile](http://github.com/russellbits/)
-+ Twitter handle: [@belovedleader](http://twitter.com/belovedleader)
+    .panel {
+      position: absolute;
+      border: 2px solid rgba(255, 0, 0, 0.5);
+      background: rgba(255, 0, 0, 0.1);
+      box-sizing: border-box;
+    }
+    .panelHighlight {
+      background: rgba(255, 0, 0, 0.35);
+    }
+
+## Notes
+
+- The `<map>` element must be **inside** the `data-panelize` or `data-panel-overlay` container.
+- The container should have an explicit `width` and `height` set.
+- `paneloverlay.js` requires the container to have `position: relative`.
+- Areas with a `target` attribute are skipped by Panelize (they are treated as links, not panels).
+
+## License
+
+&copy; R. E. Warner. Released under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
