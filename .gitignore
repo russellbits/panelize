@@ -1,6 +1,11 @@
 # Node modules
 node_modules/
 
+# AI Stuff
+.claude
+.superpowers
+prototype
+
 # Package manager files
 package-lock.json
 yarn.lock
