@@ -1,0 +1,50 @@
+{
+  "name": "@russellbits/panelize",
+  "version": "1.0.0",
+  "description": "Vanilla JS ES module for navigating web comics, presentations, or any large image using HTML image maps with pan and zoom animations",
+  "main": "panelize.js",
+  "module": "panelize.js",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./panelize.js"
+    },
+    "./paneloverlay": {
+      "import": "./paneloverlay.js"
+    }
+  },
+  "files": [
+    "panelize.js",
+    "paneloverlay.js",
+    "LICENSE",
+    "readme.md"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "image-map",
+    "navigation",
+    "pan",
+    "zoom",
+    "animation",
+    "webcomic",
+    "presentation",
+    "vanilla-js",
+    "es-module",
+    "no-dependencies"
+  ],
+  "author": "Russell Warner",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/russellbits/panelize.git"
+  },
+  "bugs": {
+    "url": "https://github.com/russellbits/panelize/issues"
+  },
+  "homepage": "https://github.com/russellbits/panelize#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

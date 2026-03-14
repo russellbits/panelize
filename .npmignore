@@ -1,0 +1,41 @@
+# Test files
+test-*.html
+
+# Documentation
+docs/
+
+# Development files
+prototype/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git files
+.git/
+.gitignore
+.gitattributes
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.travis.yml
+
+# Claude/AI assistant files
+.claude/
+.superpowers/
+
+# Node modules (if any get added during development)
+node_modules/
+
+# Package manager files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
